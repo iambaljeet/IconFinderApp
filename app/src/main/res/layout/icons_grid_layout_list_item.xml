@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="@dimen/dimen_10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewPaidIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_paid_tag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewIcon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:padding="@dimen/dimen_10dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewIconName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewIconName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_5dp"
+                tools:text="Orange"
+                android:textStyle="bold"
+                android:textSize="@dimen/textsize_14sp"
+                android:textAllCaps="true"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewIcon"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonDownload"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imageButtonDownload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:background="@drawable/ic_download"
+                app:layout_constraintTop_toTopOf="@+id/textViewIconName"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewIconName"
+                app:layout_constraintStart_toEndOf="@+id/textViewIconName"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewIconPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="$5"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:textSize="@dimen/textsize_12sp"
+                android:textColor="@color/colorPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewIconName"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewIconName"
+                app:layout_constraintStart_toEndOf="@+id/textViewIconName"
+                app:layout_constraintHorizontal_bias="1"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
