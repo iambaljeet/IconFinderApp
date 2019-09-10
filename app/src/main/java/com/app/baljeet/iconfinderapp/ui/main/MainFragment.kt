@@ -161,6 +161,7 @@ class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryC
     }
 
     fun searchIcons(searchText: String?) {
+        offset = defaultOffset
         if (searchText.isNullOrEmpty()) {
             this.searchQuery = "\"\""
         } else {
