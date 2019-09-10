@@ -16,5 +16,9 @@ object DialogHelper {
             .setPositiveButton("Retry") { p0, p1 ->
                 onDialogRetryClickListener.onRetry(offset)
                 p0.dismiss() }
+            .setNegativeButton("Cancel") { p0, p1 ->
+                p0.dismiss() }
+
+        dialogBuilder.show()
     }
 }

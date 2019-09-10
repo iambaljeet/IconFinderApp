@@ -69,15 +69,21 @@ class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryC
             setStateLoading(false)
             isLoading = false
             if (!wrapperData.error) {
-                if (wrapperData.data != null) {
-                    wrapperData.data?.icons?.let { iconsList.addAll(it) }
-                    iconsGridAdapter.newDataInserted(iconsList)
+                if (wrapperData.data != null && wrapperData.data?.total_count != null) {
+                    if (wrapperData.data?.total_count!! > 0) {
+                        wrapperData.data?.icons?.let { iconsList.addAll(it) }
+                        iconsGridAdapter.newDataInserted(iconsList)
 
-                    val totalCount = wrapperData.data?.total_count
+                        val totalCount = wrapperData.data?.total_count
 
-                    if (totalCount != null) {
-                        isLastPage = iconsList.size >= totalCount
+                        if (totalCount != null) {
+                            isLastPage = iconsList.size >= totalCount
+                        }
+                    } else {
+                        context?.let { DialogHelper.customErrorDialogBuilder(it, getString(R.string.failed_to_load_data), offset, this) }
                     }
+                } else {
+                    context?.let { DialogHelper.customErrorDialogBuilder(it, getString(R.string.failed_to_load_data), offset, this) }
                 }
             } else {
                 context?.let { DialogHelper.customErrorDialogBuilder(it, getString(R.string.failed_to_load_data), offset, this) }
