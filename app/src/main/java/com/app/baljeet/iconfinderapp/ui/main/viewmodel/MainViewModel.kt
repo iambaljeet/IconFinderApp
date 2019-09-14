@@ -9,13 +9,28 @@ import com.app.baljeet.iconfinderapp.MyApp
 import com.app.baljeet.iconfinderapp.data.IconsRepository
 import com.app.baljeet.iconfinderapp.models.IconsModel
 import com.app.baljeet.iconfinderapp.models.WrapperData
+import com.app.baljeet.iconfinderapp.ui.main.di.components.DaggerDataComponent
+import com.app.baljeet.iconfinderapp.ui.main.di.components.DataComponent
+import com.app.baljeet.iconfinderapp.ui.main.di.modules.DataModule
 import com.app.baljeet.iconfinderapp.utils.Constants
 import com.app.baljeet.iconfinderapp.utils.DirectoryHelper
 import com.app.baljeet.iconfinderapp.utils.DownloadIconService
+import javax.inject.Inject
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private var iconsRepository: IconsRepository =
-        IconsRepository()
+
+    private val dataComponent: DataComponent by lazy {
+        DaggerDataComponent.builder()
+            .dataModule(DataModule())
+            .build()
+    }
+
+    init {
+        dataComponent.inject(this)
+    }
+
+    @Inject
+    lateinit var iconsRepository: IconsRepository
 
     fun getIcons(searchQuery: String, count: Int, offset: Int): MediatorLiveData<WrapperData<IconsModel>> {
         return iconsRepository.getIcons(getParams(searchQuery, count, offset))

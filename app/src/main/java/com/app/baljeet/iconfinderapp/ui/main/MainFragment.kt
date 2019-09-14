@@ -28,10 +28,6 @@ import kotlinx.android.synthetic.main.icons_grid_layout_list_item.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryClickListener {
-    override fun onRetry(offset: Int) {
-        loadIcons(offset)
-    }
-
     private val WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 125
 
     private var isLastPage: Boolean = false
@@ -40,6 +36,7 @@ class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryC
     private val defaultOffset: Int = 0
     private var offset: Int = defaultOffset
     private var searchQuery: String = "\"\""
+
     private var downloadUrl: String? = null
     private var mediatorLiveData: MediatorLiveData<WrapperData<IconsModel>> = MediatorLiveData()
 
@@ -57,6 +54,9 @@ class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryC
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         loadIcons(defaultOffset)
@@ -219,5 +219,9 @@ class MainFragment : Fragment(), OnRecyclerViewItemClickListener, OnDialogRetryC
                 return
             }
         }
+    }
+
+    override fun onRetry(offset: Int) {
+        loadIcons(offset)
     }
 }
